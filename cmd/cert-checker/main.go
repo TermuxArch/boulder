@@ -373,7 +373,7 @@ func main() {
 
 	saDbURL, err := config.CertChecker.DBConfig.URL()
 	cmd.FailOnError(err, "Couldn't load DB URL")
-	saDbMap, err := sa.NewDbMap(saDbURL, config.CertChecker.DBConfig.MaxDBConns)
+	saDbMap, err := sa.NewDbMap(saDbURL, config.CertChecker.DBConfig.MaxOpenConns)
 	cmd.FailOnError(err, "Could not connect to database")
 
 	sa.InitDBMetrics(saDbMap, prometheus.DefaultRegisterer)

@@ -477,7 +477,7 @@ func main() {
 	// Configure DB
 	dbURL, err := c.Mailer.DBConfig.URL()
 	cmd.FailOnError(err, "Couldn't load DB URL")
-	dbMap, err := sa.NewDbMap(dbURL, c.Mailer.DBConfig.MaxDBConns)
+	dbMap, err := sa.NewDbMap(dbURL, c.Mailer.DBConfig.MaxOpenConns)
 	cmd.FailOnError(err, "Could not connect to database")
 	sa.SetSQLDebug(dbMap, logger)
 

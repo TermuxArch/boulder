@@ -75,7 +75,7 @@ func setupContext(c config) (core.RegistrationAuthority, blog.Logger, *db.Wrappe
 
 	dbURL, err := c.Revoker.DBConfig.URL()
 	cmd.FailOnError(err, "Couldn't load DB URL")
-	dbMap, err := sa.NewDbMap(dbURL, c.Revoker.DBConfig.MaxDBConns)
+	dbMap, err := sa.NewDbMap(dbURL, c.Revoker.DBConfig.MaxOpenConns)
 	cmd.FailOnError(err, "Couldn't setup database connection")
 
 	saConn, err := bgrpc.ClientSetup(c.Revoker.SAService, tlsConfig, clientMetrics, clk)

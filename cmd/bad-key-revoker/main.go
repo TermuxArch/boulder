@@ -391,7 +391,7 @@ func main() {
 
 	dbURL, err := config.BadKeyRevoker.DBConfig.URL()
 	cmd.FailOnError(err, "Couldn't load DB URL")
-	dbMap, err := sa.NewDbMap(dbURL, config.BadKeyRevoker.DBConfig.MaxDBConns)
+	dbMap, err := sa.NewDbMap(dbURL, config.BadKeyRevoker.DBConfig.MaxOpenConns)
 	cmd.FailOnError(err, "Could not connect to database")
 	sa.SetSQLDebug(dbMap, logger)
 	sa.InitDBMetrics(dbMap, scope)

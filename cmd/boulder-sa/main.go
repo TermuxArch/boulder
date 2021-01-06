@@ -61,7 +61,7 @@ func main() {
 	dbURL, err := saConf.DBConfig.URL()
 	cmd.FailOnError(err, "Couldn't load DB URL")
 
-	dbMap, err := sa.NewDbMap(dbURL, saConf.DBConfig.MaxDBConns)
+	dbMap, err := sa.NewDbMap(dbURL, saConf.DBConfig.MaxOpenConns)
 	cmd.FailOnError(err, "Couldn't connect to SA database")
 
 	// Collect and periodically report DB metrics using the DBMap and prometheus scope.
